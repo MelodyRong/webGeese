@@ -1,25 +1,56 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import pcRouter from './pcRouter/index'
+import mobileRouter from './mobileRouter/index'
+
+export function redirectF () {
+  const flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+  if (flag) {
+    return '/mobileIndexView'
+  } else {
+    return '/pcHomePage'
+  }
+}
 
 const routes = [
+  // 404
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/:pathMatch(.*)*',
+    component: () => import('../components/cannotFind')
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/',
+    name: 'homePage',
+    component: () => import(/* webpackChunkName: "mobileIndexView" */ '../views/homePage')
+    // redirect: () => { return redirectF() }
+    // children: [{
+    //   path: '/',
+    //   name: 'recommend',
+    //   // component: () => import('@/views/yueTao'),
+    //   meta: {},
+    //   redirect: () => { return redirectF() }
+    // }]
+  },
+  ...pcRouter,
+  ...mobileRouter
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+// 路由守卫导航
+// router.beforeEach((to, from, next) => {
+//   console.log(to)
+//   // 返回 false 以取消导航
+//   const flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+//   if (flag) {
+//     // 如果flag不为空，说明可以匹配到，是手机端
+//     next({
+//       path: '/mobileIndexView'
+//     })
+//   }
+//   next()
+// })
 
 export default router

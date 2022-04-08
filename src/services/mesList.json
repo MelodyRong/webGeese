@@ -1,0 +1,60 @@
+{
+  "mesList": [
+    {
+      "name": "橘六雁",
+      "dateTime": "2020-09-02 12:23",
+      "type": 1,
+      "paste": "看图写作,",
+      "isShowBigImage": false,
+      "source": 1,
+      "sourceName": "2146",
+      "contentCollection": ["../../../src/static/imgDetails/Wechat1.jpeg", ""]
+    },
+    {
+      "name": "橘六雁",
+      "dateTime": "2020-09-07 10:18",
+      "type": 2,
+      "paste": "妈咪弹钢琴-凉凉",
+      "source": 2,
+      "sourceName": "",
+      "videoCover": "../../../src/static/imgDetails/liangliangBgc.png",
+      "contentCollection": ["../../../src/static/imgDetails/liangliang.mp4"]
+    },
+    {
+      "name": "橘六雁",
+      "dateTime": "2020-09-02 11:28",
+      "type": 3,
+      "paste": "山河令满屏弹幕版",
+      "source": 2,
+      "sourceName": "",
+      "contentCollection": ["「山河令全屏弹幕录屏版 347.05G」ht删tps://www.al除iyu链ndr接ive.com/s/b中u4X文Fdhj字guC 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。"]
+    },
+    {
+      "name": "橘六雁",
+      "dateTime": "2020-09-04 10:23",
+      "type": 3,
+      "paste": "210323-0324【龚俊】极限挑战210411播出",
+      "source": 2,
+      "sourceName": "",
+      "contentCollection": ["「210323-0324【龚俊】极限挑战210411播出」ht删tps://www.al除iyun链dri接ve.com/s/pK中BQS文ARRo字fS 提取码: 45hx 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。"]
+    },
+    {
+      "name": "橘六雁",
+      "dateTime": "2020-09-04 16:38",
+      "type": 3,
+      "paste": "【龚俊】美特斯邦威模特照合集",
+      "source": 2,
+      "sourceName": "",
+      "contentCollection": ["「【龚俊】美特斯邦威模特照合集」htt删ps://www.al除iyun链dri接ve.com/s/p中CvWG文15tb字rP 提取码: 45hx 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。"]
+    },
+    {
+      "name": "橘六雁",
+      "dateTime": "2020-09-05 08:20",
+      "type": 3,
+      "paste": "cp站姐图包1",
+      "source": 2,
+      "sourceName": "",
+      "contentCollection": ["「cp站姐图包1」等文件 ht删tps://www.al除iyun链driv接e.com/s/yH中1KJa文Q6N字76 提取码: 45hx 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。"]
+    }
+  ]
+}
