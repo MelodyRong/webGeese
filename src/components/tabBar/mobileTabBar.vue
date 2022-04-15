@@ -10,9 +10,15 @@
 <script>
 export default {
   name: 'mobileTabBar',
+  props: {
+    tabBarIndex: {
+      type: Number,
+      default: 0
+    }
+  },
   data () {
     return {
-      tabBarIndex: 0, // 初始值
+      // tabBarIndex: 0, // 初始值
       tabBarList: [
         {
           icon: require('@/assets/tabBar/homePage.png'), // 默认展示图标
@@ -45,7 +51,7 @@ export default {
   },
   methods: {
     goPath (item, index) {
-      this.tabBarIndex = index
+      // this.tabBarIndex = index
       this.$router.push({ path: item.path })
     }
   }

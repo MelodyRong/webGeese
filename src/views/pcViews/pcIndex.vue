@@ -96,15 +96,16 @@ export default {
             // 先判断动图，再判断长图
             if (t.imgUrl.split('.')[2] === 'gif') {
               t.imgType = '动图'
-            } else {
-              const img = new Image()
-              img.src = t.imgUrl
-              img.onload = function () {
-                if (Number(img.height) >= 100) {
-                  t.imgType = '长图'
-                }
-              }
             }
+            // else {
+            //   const img = new Image()
+            //   img.src = t.imgUrl
+            //   img.onload = function () {
+            //     if (Number(img.height) >= 100) {
+            //       t.imgType = '长图'
+            //     }
+            //   }
+            // }
           })
         }
       })
@@ -132,6 +133,13 @@ export default {
 <style lang="less" scoped >
 .pcIndexPageWrap {
   padding-top: 20px;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  background-image: url('../../assets/bgcImage/pcMyHomeBgc.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position:center;
   .searchWrap {
     margin: 0 10vw 2vh;
     display: flex;

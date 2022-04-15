@@ -16,8 +16,6 @@
 </template>
 
 <script>
-// import webHomePage from '@/views/pcViews/homePage.vue'
-// import mobileHomePage from '@/views/mobileViews/homePage.vue'
 import tabBar from '@/components/tabBar/mobileTabBar'
 
 export default {
@@ -75,14 +73,5 @@ export default {
   background-size:cover;
   background-position:center;
 }
-// mobile端背景
-.mobileHome {
-  width: 100vw;
-  height: 100vh;
-  overflow-y: scroll;
-  background-image: url('../assets/bgcImage/mobileMyHomeBgc.jpg');
-  background-repeat: no-repeat;
-  background-size:cover;
-  background-position:center;
-}
+
 </style>

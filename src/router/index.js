@@ -20,15 +20,13 @@ const routes = [
   {
     path: '/',
     name: 'homePage',
-    component: () => import(/* webpackChunkName: "mobileIndexView" */ '../views/homePage')
-    // redirect: () => { return redirectF() }
-    // children: [{
-    //   path: '/',
-    //   name: 'recommend',
-    //   // component: () => import('@/views/yueTao'),
-    //   meta: {},
-    //   redirect: () => { return redirectF() }
-    // }]
+    component: () => import(/* webpackChunkName: "mobileIndexView" */ '../views/homePage'),
+    children: [{
+      path: '/',
+      name: 'recommend',
+      meta: {},
+      redirect: () => { return redirectF() }
+    }]
   },
   ...pcRouter,
   ...mobileRouter

@@ -1,57 +1,66 @@
 <template>
   <div class="mobileIndexWrap">
-    <!--  搜索  -->
-    <div class="searchWrap">
-      <div class="searchInpWrap">
-        <img src="@/assets/search.png" alt="" class="searchImg">
-        <input type="text" class="searchInp" v-model="searchInpData" @input="searchData">
+    <div class="mobileWrap">
+      <!--  搜索  -->
+      <div class="searchWrap">
+        <div class="searchInpWrap">
+          <img src="@/assets/search.png" alt="" class="searchImg">
+          <input type="text" class="searchInp" v-model="searchInpData" @input="searchData">
+        </div>
+        <div class="searchButWrap" @click="searchData">搜索</div>
       </div>
-      <div class="searchButWrap" @click="searchData">搜索</div>
-    </div>
-    <div class="homePageDetails" v-for="(item, mobileIndex) in dataList" v-bind:key="mobileIndex">
-      <!-- title -->
-      <div class="titleWrap">
-        <div class="headerImg">雁</div>
-        <div class="nameAndTime"><p class="name">{{item.name}}</p><p class="dateTime">{{item.dateTime}}</p></div>
-      </div>
-      <!-- 文案 -->
-      <div class="paste">{{item.paste}}<p class="contentSource" v-if="item.source===1">来自公众号投稿 @ <span class="sourceName">{{item.sourceName}}</span></p></div>
-      <!-- 小图 -->
-      <div class="imageDetailsWrap" v-if="item.type === 1">
-        <div class="imgWrap" v-for="(items, mobileIndex) in item.contentCollection" :key="mobileIndex" @click="amplification(item,items)">
-          <img class="imageDetails" :src="require('@/assets/imgDetails/' + items.imgUrl)" alt="">
-          <span class="imageTypeLogo">{{items.imgType}}</span>
+      <!--  内容展示  -->
+      <div class="homePageDetails" v-for="(item, mobileIndex) in dataList" v-bind:key="mobileIndex">
+        <!-- title -->
+        <div class="titleWrap">
+          <div class="headerImg">雁</div>
+          <div class="nameAndTime"><p class="name">{{item.name}}</p><p class="dateTime">{{item.dateTime}}</p></div>
+        </div>
+        <!-- 文案 -->
+        <div class="paste">{{item.paste}}<p class="contentSource" v-if="item.source===1">来自公众号投稿 @ <span class="sourceName">{{item.sourceName}}</span></p></div>
+        <!-- 小图 -->
+        <div class="imageDetailsWrap" v-if="item.type === 1">
+          <div class="imgWrap" v-for="(items, mobileIndex) in item.contentCollection" :key="mobileIndex" @click="amplification(item,items)">
+            <img class="imageDetails" :src="require('@/assets/imgDetails/' + items.imgUrl)" alt="">
+            <span class="imageTypeLogo">{{items.imgType}}</span>
+          </div>
+        </div>
+        <!-- 视频 -->
+        <div class="videoDetailsWrap" v-if="item.type === 2">
+          <div v-for="(items, mobileIndex) in item.contentCollection" :key="mobileIndex">
+            <video :preload="preload" :poster="require('@/assets/imgDetails/' + item.videoCover)" :height="height" :width="width" align="center" :controls="controls"  :autoplay="autoplay">
+              <source :src="require('@/assets/imgDetails/' + items.imgUrl)" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!-- 文字帖 -->
+        <div class="textDetailsWrap" v-if="item.type === 3">
+          <div v-for="(items, mobileIndex) in item.contentCollection" :key="mobileIndex">
+            {{items}}
+          </div>
         </div>
       </div>
-      <!-- 视频 -->
-      <div class="videoDetailsWrap" v-if="item.type === 2">
-        <div v-for="(items, mobileIndex) in item.contentCollection" :key="mobileIndex">
-          <video :preload="preload" :poster="require('@/assets/imgDetails/' + item.videoCover)" :height="height" :width="width" align="center" :controls="controls"  :autoplay="autoplay">
-            <source :src="require('@/assets/imgDetails/' + items.imgUrl)" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- 文字帖 -->
-      <div class="textDetailsWrap" v-if="item.type === 3">
-        <div v-for="(items, mobileIndex) in item.contentCollection" :key="mobileIndex">
-          {{items}}
-        </div>
+      <div class="noDataList" v-if="dataList.length === 0">暂无数据，换个关键词搜索吧！！！</div>
+      <!-- 大图展示 -->
+      <div class="bigImageWrap" v-if="isShowBigImage" @click="narrow()">
+        <img :src="require('@/assets/imgDetails/' + amplificationImg)" alt="" :width="bigImgWidth" :height="bigImgHeight">
       </div>
     </div>
-    <div class="noDataList" v-if="dataList.length === 0">暂无数据，换个关键词搜索吧！！！</div>
-    <!-- 大图展示 -->
-    <div class="bigImageWrap" v-if="isShowBigImage" @click="narrow()">
-      <img :src="require('@/assets/imgDetails/' + amplificationImg)" alt="" :width="bigImgWidth" :height="bigImgHeight">
-    </div>
+    <!--  bottomTabBar  -->
+    <tabBar :tabBarIndex="0"></tabBar>
   </div>
 </template>
 
 <script>
 import homeDataList from '@/services/homeDataList.json'
+import tabBar from '@/components/tabBar/mobileTabBar'
 import { toRaw } from 'vue'
 
 export default {
   name: 'mobileIndex',
+  components: {
+    tabBar
+  },
   data () {
     return {
       playStatus: '',
@@ -76,7 +85,8 @@ export default {
   created () {
     console.log(this.$route.query)
     if (this.$route.query && this.$route.query.name) {
-      console.log(this.$route.query.name)
+      this.getHomeDataList()
+      this.searchInpData = this.$route.query.name
       this.searchData(this.$route.query)
     } else {
       this.clientHeight = document.body.clientHeight
@@ -135,8 +145,18 @@ export default {
 
 <style lang="less" scoped>
 .mobileIndexWrap {
-  padding: 10px 10px 40px;
-  position: relative;
+  //padding: 10px 10px 40px;
+  //position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  background-image: url('../../assets/bgcImage/mobileMyHomeBgc.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position:center;
+  .mobileWrap {
+    padding: 10px 10px 40px;
+  }
   .searchWrap {
     margin: 0 0 2vh;
     display: flex;
