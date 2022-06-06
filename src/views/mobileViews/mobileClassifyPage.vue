@@ -10,10 +10,11 @@
         <!-- 分类 -->
         <div class="rightClassifyViewDetails">
           <div class="classifyViewDetailsWrap" v-for="(item, index) in classifyList[classifyIndex].details" :key="index" @click="queryData(item.name)">
-            <div class="classifyImg" :style="{backgroundImage:'url(' + require('@/assets/classifyImg/' + item.img) + ')'}"></div>
+            <div class="classifyImg" :style="{backgroundImage:'url(' + require('@/assets/classifyImg/television/' + item.img) + ')'}"></div>
             <div class="classifyName">{{item.name}}</div>
           </div>
         </div>
+<!--        <records></records>-->
       </div>
     </div>
   </div>
@@ -24,10 +25,12 @@
 <script>
 import classifyList from '@/services/classifyList'
 import tabBar from '@/components/tabBar/mobileTabBar'
+// import records from '@/components/putOnRecords/index'
 export default {
   name: 'mobileClassifyView',
   components: {
     tabBar
+    // records
   },
   data () {
     return {
@@ -101,20 +104,24 @@ export default {
     width: 79%;
     height: 100vh;
     overflow-y: scroll;
+    position: relative;
     .tipsWrap {
-      //width: 100%;
+      width: 100%;
       height: 30px;
       padding-left: 10px;
       font-size: 12px;
       color: #fca104;
       background-color: rgba(255, 255, 255, 0.8);
       line-height: 30px;
+      position: fixed;
+      z-index: 2;
     }
     .rightClassifyViewDetails {
       display: flex;
       flex-wrap: wrap;
       padding-top: 10px;
       padding-bottom: 100px;
+      margin-top: 30px;
       .classifyViewDetailsWrap {
         width: 33%;
         min-height: 120px;
